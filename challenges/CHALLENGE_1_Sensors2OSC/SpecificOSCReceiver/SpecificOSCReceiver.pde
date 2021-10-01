@@ -3,24 +3,29 @@ import oscP5.*;
 
 OscP5 osc;
 MyPoint p;
-int x, y;
+float x, y, z;
 
 void setup(){
-  osc = new OscP5(this, 23456);
-  osc.plug(this, "shake", "/accelerometer");
-  x=0;y=0;
-  
+  osc = new OscP5(this, 1998);
+  osc.plug(this, "accelerometer_x_handler", "/accelerometer/x");
+  osc.plug(this, "accelerometer_y_handler", "/accelerometer/y");
+  osc.plug(this, "accelerometer_z_handler", "/accelerometer/z");
 }
 
 void draw() {
-  p.move(x, y);
-  p.plot();
+  println("( " + x + " , " + y + " , " + z + " )");
 }
 
-void shake(float x, float y, float z) {
-  println(z);
+void accelerometer_x_handler(float value) {
+  x = value;
 }
 
-void oscEvent(OscMessage m) {
-  println(m.addrPattern() + " , " + m.typetag());
+
+void accelerometer_y_handler(float value) {
+  y = value;
+}
+
+
+void accelerometer_z_handler(float value) {
+  z = value;
 }
