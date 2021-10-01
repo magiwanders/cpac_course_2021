@@ -6,7 +6,6 @@ import time
 import requests
 import urllib
 import numpy as np
-os.chdir(os.path.abspath(os.path.dirname(__file__)))
 import your_code
 CREATE_SPOTIFY_PLAYLIST = True 
 # Set it to False and I will create a long file instead
@@ -15,17 +14,17 @@ add_item_playlist_url="https://api.spotify.com/v1/playlists/{playlist_id}/tracks
 create_playlist_url="https://api.spotify.com/v1/users/{user_id}/playlists"
 # %% Get the token
 # 1) go to https://developer.spotify.com/console/post-playlists/
-# 2) press "get token"
+# 2) press "try it"
 # 3) remember to include playlist-modify-private 
 # 4) login
 # 5) agree 
 # 6) execute this cell and give the script the token (see above)
 if "token" not in locals(): # if you have not inserted the token 
-    token=input("Please, give me your token\n")
+    token=input("Give me the token\n")
 header={"Authorization": "Bearer %s"%token}
 
 
-# %% Get the list of songs
+# %% Search the songs
 
 assert os.path.exists("list_of_songs.json"), "Please put here a list of songs"
 with open("list_of_songs.json",'r') as fp:
@@ -54,7 +53,7 @@ if CREATE_SPOTIFY_PLAYLIST:
     params={"name":name_playlist, "description": "made during cpac!"}
 
 
-# %% Create the playlist
+# %% Actually create the playlist
 if CREATE_SPOTIFY_PLAYLIST:
     req=requests.post(url=create_playlist_url.format(user_id=user_id), 
                       json=params, headers=header)

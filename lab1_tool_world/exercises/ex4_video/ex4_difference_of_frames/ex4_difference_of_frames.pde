@@ -37,16 +37,15 @@ void copy2img(Capture camera, PImage img) {
 void copy_img(PImage src, PImage dst) {
   dst.set(0,0,src);
 }
-
 void effectDiffFrames(PImage img){
-  img.loadPixels(); // creates the pixels[] array
-  
+  copy2img(cam, cur_frame);
   if(first_frame){
-    copy2img(cam, img);
+    copy2img(cam, old_frame);
     first_frame=false;
-    return;
+    return; 
   }
-  
+  img.loadPixels(); // creates the pixels[] array
+  old_frame.loadPixels();
   float r, oldr, g, oldg, b, oldb;
   colorMode(RGB, 255);
   for (int loc=0; loc<img.width*img.height; loc++){
@@ -58,21 +57,17 @@ void effectDiffFrames(PImage img){
     oldb= blue(old_frame.pixels[loc]);
     img.pixels[loc]=color(Math.abs(r-oldr), Math.abs(g-oldg), Math.abs(b-oldb));
   }
-  
   img.updatePixels();
-  copy_img(old_frame, cur_frame);
- 
+  copy_img(cur_frame, old_frame);
 }
-
 void draw() {
   if (! cam.available()) {return;}
   cam.read();
-  if(first_frame) {
-    cur_frame = createImage(cam.width,cam.height,RGB);
-    old_frame = createImage(cam.width,cam.height,RGB);
+  if(first_frame){
+    cur_frame=createImage(cam.width,cam.height,RGB);
+    old_frame=createImage(cam.width,cam.height,RGB);  
   }
   PImage img=createImage(cam.width,cam.height,RGB);
-  
   
   effectDiffFrames(img);
   

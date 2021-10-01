@@ -35,16 +35,13 @@ void copy2img(Capture camera, PImage img) {
 
 void changeColors(PImage img){
   img.loadPixels();
-  float r, g, b;
-  colorMode(RGB, 255);
-  for(int loc=0; loc<img.width*img.height; loc++){
-    r= red(img.pixels[loc]);
-    g= green(img.pixels[loc]);
-    b= blue(img.pixels[loc]);
-    img.pixels[loc]=color(g,b, r);    
+  for (int i=0; i<img.width*img.height; i++) {
+    img.pixels[i]=color(blue(img.pixels[i]),
+                        red(img.pixels[i]),
+                        green(img.pixels[i]));
   }
-  // your code here;
-  img.updatePixels();  
+  img.updatePixels();
+  
 }
 
 void draw() {
