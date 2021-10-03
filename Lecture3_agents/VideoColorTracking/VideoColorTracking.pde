@@ -1,3 +1,5 @@
+// This method is not very robust, we should use BLOB DETECTION
+
 import processing.video.*;
 
 
@@ -40,7 +42,7 @@ void draw() {
       float d = dist(r1, g1, b1, r2, g2, b2); 
 
       if (d < worldRecord) {
-
+        // Save the fact that the analyzed pixel is the closest to the looked after color
         worldRecord = d;
         closestX = x;
         closestY = y;

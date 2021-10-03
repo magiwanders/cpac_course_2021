@@ -1,4 +1,3 @@
-
 // The "Vehicle" class
 
 class Vehicle {
@@ -31,7 +30,7 @@ class Vehicle {
   }
 
   void applyForce(PVector force) {
-    acceleration.add(force);
+    acceleration.add(force); // BULLSHIT, FORCE IS NOT APPLIED TO ACCELERATION IN A DIFFERENTIAL WAY
   }
 
   // A method that calculates a steering force towards a target

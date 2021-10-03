@@ -1,15 +1,18 @@
+// The ball that moves
 class Mover {
 
+  // Physical 
   PVector location;
   PVector velocity;
   PVector acceleration;
   
   Mover() {
-    location = new PVector(random(width), random(height));
+    location = new PVector(random(width), random(height)); // Random place and velocity
     velocity = new PVector(random(-2, 2), random(-2, 2));
-    acceleration = new PVector(0.1,-0.3);
+    acceleration = new PVector(0.1,-0.3); // 
   }
 
+  // One quantum of time passes, position and velocity are updated accordingly
   void update() {
     location.add(velocity);
     velocity.add(acceleration); 
@@ -22,6 +25,7 @@ class Mover {
     ellipse(location.x, location.y, 48, 48);
   }
 
+// Pacman effect
   void checkEdges() {
 
     if (location.x > width) {

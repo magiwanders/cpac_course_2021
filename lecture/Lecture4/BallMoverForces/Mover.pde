@@ -13,14 +13,15 @@ class Mover {
   }
   
   void applyForce(PVector force) {
-    PVector f = PVector.div(force,mass);  // Force/Mass
-    acceleration.add(f);
+    //PVector f = PVector.div(force,mass);  // Force/Mass THIS CODE IS A LITTLE BIT OF BULLSHIT
+    //acceleration.add(f);
+    acceleration = PVector.div(force, mass);
   }
   
   void update() {
     velocity.add(acceleration);
     location.add(velocity);
-    acceleration.mult(0);  // Since the acceleration corresponds to the force, need to be set up to 0 each cycle
+    //BULLSHITacceleration.mult(0);  // Since the acceleration corresponds to the force, need to be set up to 0 each cycle
   }
 
   void display() {
@@ -40,6 +41,7 @@ class Mover {
       location.x = 0;
     }
 
+    // This basically creates the bouncing effect
     if (location.y > height) {
       velocity.y *= -1;    // bouncing
       location.y = height;
