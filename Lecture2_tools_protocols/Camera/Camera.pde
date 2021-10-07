@@ -28,7 +28,7 @@ void draw() {
   if (cam.available() == true) { // Good practice to check if the device is ready
     cam.read(); // For each frame get the matrix of colors of the captured image
   }
-  image(cam, 50, 50, 300, 100); // first two coordinates are the top left corner, the others the bottom right
+  image(cam, 0, 0, 640, 480); // first two coordinates are the top left corner, the others the bottom right
   // The following does the same, and is faster when just drawing the image
   // without any additional resizing, transformations, or tint.
   //set(0, 0, cam);

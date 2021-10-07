@@ -29,5 +29,5 @@ void draw()
   println(intensity);
   
   fill(intensity*255);
-  rect(0, 0, 100, intensity*100);
+  rect(0, 0, 100, intensity*1000);
 }

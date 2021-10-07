@@ -1,4 +1,5 @@
 
+
 class MyPoint{
   
   float x,y;

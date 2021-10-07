@@ -17,7 +17,7 @@ void setup(){
   c3 = color(0, 10, 255);
   p1 = new MyPoint(10,10,10, c1);
   p2 = new MyPoint(150,300,20, c2);
-  p3 = new MyPoint(150,300,20, c3);
+  p3 = new MyPoint(0,0,20, c3);
   p1.plot();
   p2.plot();
   p3.plot();
@@ -25,7 +25,7 @@ void setup(){
 
 
 void draw(){ 
-  //background(255,255,255); // Previous positions overpainted
+  background(255,255,255); // Previous positions overpainted
   p1.move(mouseX,mouseY); // The first dot just follows the mouse
   p1.plot();
   p2.move(mouseY,mouseX);
