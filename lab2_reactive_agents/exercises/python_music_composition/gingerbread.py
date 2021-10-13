@@ -3,10 +3,8 @@ import platform
 import sys
 import time
 import numpy as np
-
-from constants import ID_START
     
-from classes import Agent, Composition
+from classes import Agent, Composition, ID_START
 
 class Gingerbread(Composition):
     def __init__(self, BPM=60):
@@ -14,6 +12,8 @@ class Gingerbread(Composition):
         self.min=-3
         self.max=8
         self.range=self.max-self.min 
+        self.x = -0.1
+        self.y = 0.1
         # your code here
         
     def map(self, value_in, min_out, max_out):
@@ -22,8 +22,14 @@ class Gingerbread(Composition):
         return np.clip(value_out, min_out, max_out)
 
     def next(self):
-        # your code here
-        pass
+        xn, yn = self.x, self.y
+        self.x = 1 - yn + abs(xn)
+        self.y = xn
+
+        self.midinote = self.map(self.x, 44, 88)
+        self.dur = self.map(self.y, 0.1, 0.25)
+
+        self.amp = 0.1
     
 if __name__=="__main__":
     n_agents=1

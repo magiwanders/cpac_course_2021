@@ -24,7 +24,7 @@ SynthDef("moog", {
 
 // setting the note
 (
-~instr.set(\midinote, 62, \amp, 1);
+~instr.set(\midinote, 62, \amp, 0.1);
 )
 
 //setting the cutoff
