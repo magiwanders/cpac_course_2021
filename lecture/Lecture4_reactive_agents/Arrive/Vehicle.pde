@@ -53,7 +53,7 @@ class Vehicle {
     // --------- 
     // Normalize desired and scale with arbitrary damping within 100 pixels
     desired.normalize();
-    if (d < 100) {
+    if (d < 100) { // Close to the target
       float m = map(d,0,100,0,maxspeed);
       desired.mult(m);
     } else {

@@ -1,13 +1,16 @@
 
 
-Vehicle v,v1,v2;
+Vehicle v,v1,v2, v3, v4, v5;
 
 
 void setup() {
-  size(800, 200);
+  size(800, 400);
   v = new Vehicle(width/2, height/2);
   v1 = new Vehicle(0, 0);
-  v2 = new Vehicle(200, 200);
+  v2 = new Vehicle(100, 100);
+  v3 = new Vehicle(150, 300);
+  v4 = new Vehicle(200, 100);
+  v5 = new Vehicle(2500, 200);
   smooth();
 }
 
@@ -33,6 +36,14 @@ void draw() {
     v2.arrive(mouse);
     v2.update();
     v2.display();
-    
+    v3.arrive(mouse);
+    v3.update();
+    v3.display();
+    v4.arrive(mouse);
+    v4.update();
+    v4.display();
+    v5.arrive(mouse);
+    v5.update();
+    v5.display();
   }
 }
