@@ -35,6 +35,11 @@ void draw(){
   fill(200, 0, 200, 40);
   ellipse(pos_attractor.x, pos_attractor.y, 
           radius_attractor, radius_attractor);
-  /* your code */
+          
+  for (int i=0; i<movers.length;i++) {
+    movers[i].applyForce(computeGravityForce(movers[i]));
+    movers[i].update();
+    movers[i].draw();
+  }
   
 }
