@@ -22,12 +22,12 @@ class Particle{
   void draw(){
     /* your code here*/
     colorMode(HSB, 255);
-    fill(200);
+    fill(random(0, 255), random(0, 255), random(0, 255), lifespan);
     noStroke();
-    ellipse(this.pos.x, this.pos.y, this.radius, this.radius);    
+    ellipse(this.pos.x, this.pos.y, this.radius*5, this.radius*2);    
   }
   boolean isDead(){
-    // your code here
+    if (this.lifespan<=0) return true;
     return false;
   }
 }

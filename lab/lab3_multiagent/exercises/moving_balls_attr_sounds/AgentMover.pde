@@ -23,6 +23,11 @@ class AgentMover{
     this.mass=mass;
     this.radius=sqrt(this.mass/PI)*MASS_TO_PIXEL;    
   }
+  
+  PVector position(){
+    return position;
+  }
+  
   void update(){    
     this.velocity.add(this.acceleration);
     this.velocity.limit(velocity_max);

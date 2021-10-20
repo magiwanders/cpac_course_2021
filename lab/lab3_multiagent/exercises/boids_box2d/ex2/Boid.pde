@@ -43,7 +43,23 @@ class Boid{
       
       for(Boid other: boids){        
         if(this.body==other.body){continue;}
-        // your code here        
+        // your code here 
+        otherPosW = other.body.getPosition();
+        Vec2 diffPos = otherPosW.sub(myPosW); 
+        if (diffPos.length()<AVOID_DIST) {
+          avoid_force.set(diffPos.mul(-10));
+        } else if (diffPos.length() < ALIGN_DIST){
+                  
+        otherVel = other.body.getLinearVelocity();
+        
+        float myVel_angle = atan2(myVel.x, myVel.y);
+        float otherVel_angle = atan2(otherVel.x, otherVel.y);
+        
+        float diffVel_angle = myVel_angle - otherVel_angle;
+        
+        align_force.set(otherVel);
+        }
+        
       }
       if(avoid_force.length()>0){this.applyForce(avoid_force);}
       if(align_force.length()>0){this.applyForce(align_force);}

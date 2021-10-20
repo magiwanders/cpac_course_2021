@@ -9,6 +9,7 @@ class Boid{
     float time_index, dur_frames;
     int nextPoint;
     SoundFile sample;
+    int frames=0;
     
     Boid(Box2DProcessing  box2d, CircleShape ps, BodyDef bd, Vec2 position,SoundFile sample, int nextPoint){
         this.box2d = box2d;    
@@ -33,10 +34,23 @@ class Boid{
     void draw(){
         Vec2 posPixel=this.box2d.getBodyPixelCoord(this.body);
         // your code here
+       
+        fill(this.defColor);
+        //this.defColor = color(200, 200, 200);
+        stroke(0);
+        strokeWeight(0);        
+        ellipse(posPixel.x, posPixel.y, RADIUS_BOID, RADIUS_BOID);   
+        
+        if (frames == 0) {
+          this.defColor = color(200, 200, 200);
+        } else {
+          frames--;
+        }
         
     }
     void changeColor(){
-      // your code here
+      this.defColor = color(255, 0, 0);
+      frames=4;
     }
     void play(){
      // your code here: check if it's already playing, before make it play again

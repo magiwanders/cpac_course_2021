@@ -13,6 +13,7 @@ PVector pos_attractor;
 void setup(){
   String path=sketchPath()+"/sounds";
   File dir = new File(path);
+  println(sketchPath());
   print(dir.isDirectory());
   String filenames[] = dir.list();
   N_AGENTS=filenames.length;
@@ -23,6 +24,7 @@ void setup(){
   for(int i=0; i<N_AGENTS; i++){
      movers[i]=new AgentMover(random(100000,200000));
      samples[i] = new SoundFile(this, path+"/"+filenames[i]);
+     println(samples[i]);
      samples[i].amp(0);
      samples[i].loop();
   }
@@ -48,7 +50,7 @@ PVector computeGravityForce(AgentMover mover){
 
 int changeAmp(int i){
   /* your code here instead of this*/
-  float amp=1;
+  float amp= movers[i].position().sub(pos_attractor).mag();
   samples[i].amp(amp);
   
   return int(amp*255);

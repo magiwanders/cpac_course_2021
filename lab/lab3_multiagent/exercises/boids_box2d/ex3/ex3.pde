@@ -63,6 +63,8 @@ void setup() {
   File dir = new File(path);
   filenames= dir.list();
   
+  println(dir);
+  
   
 }
 void mousePressed() {
