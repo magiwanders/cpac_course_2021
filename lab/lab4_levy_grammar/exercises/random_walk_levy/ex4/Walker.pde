@@ -24,8 +24,16 @@ class Walker {
     line(this.prevPosition.x, this.prevPosition.y,
          this.position.x, this.position.y);
   }
+  
   void computeEffect(){
      /* your code here*/
+     freq = 500+100*(this.prevPosition.y-this.position.y);
+     amp = 0.5*this.position.y/height;//this.prevPosition.x/width - this.position.x/width;
+     cutoff = 3;
+     vibrato = 0;//this.position.y/height;
+     
+     println("freq = " + freq + ", amp = " + amp + ", cutoff = " + cutoff + ", vibrato = " + vibrato);
+     
   }
   
   void update() {    

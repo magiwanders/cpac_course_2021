@@ -31,17 +31,25 @@ class Walker {
 }
 
 float montecarlo() {
-  while (true) {
-     float R1, p, R2;
-     if(MONTECARLO_STEPS==2){
-        R1=random(1);
-        p=random(1);
-        R2=random(1);
-     }
-     if(MONTECARLO_STEPS==1){
-        /* your code */        
-     }
-     
-     if (R2<p){ return R1;}
+  
+  float R1=random(1), p=random(1), R2=random(1);
+  
+  if(MONTECARLO_STEPS==2){
+    while (R2>=p) {
+      R1 = random(1); 
+      R2 = random(1); 
+      p = random(1);
+      if (R2<p) return R1;
+    }
   }
+  if(MONTECARLO_STEPS==1){
+      R1 = random(1);  
+      p = pow(1-R1, 2);
+    while (R2>=p) {
+      R2 = random(1);
+      if (R2<p) return R1;
+    }
+  }
+  
+  return -1;
 }

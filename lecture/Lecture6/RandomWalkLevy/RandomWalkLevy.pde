@@ -23,6 +23,17 @@ void draw() {
   w.step();
   w.render();
   
+    // Each pixel is progressively dimmed to oblivion
+  loadPixels();
+  for(int i=0; i<pixels.length; i++) {
+    float r = red(pixels[i]);
+    float g = green(pixels[i]);
+    float b = blue(pixels[i]);
+    color c = color(r-0.1, g-0.1, b-0.1);
+    pixels[i] = c;
+  }
+  updatePixels();
+  
   OscMessage myMessage = new OscMessage("/position");
   myMessage.add(w.x/(width/2));
   myMessage.add(map((w.y+w.x),0,height+width,60,200));

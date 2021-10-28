@@ -19,7 +19,7 @@ if __name__=="__main__":
         
     seqs=G.create_sequence(START_SEQUENCE)
     print("\n".join(seqs), "\nFinal sequence: ", G.sequence)    
-    C= Composer("sounds/cymb.wav", BPM=174)
+    C= Composer("sounds/imsd.wav", BPM=120)
     C.create_sequence(G.sequence)
     C.write("out/"+fn_out)
     

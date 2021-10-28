@@ -6,10 +6,17 @@ from classes import Composer, Grammar_Sequence
 # %%
 
 slow_grammar={
-    #your code here
+    "S":["M", "SM"],
+    "M": ["W"],  
+    "W": ["HH", "ththth"],
+    "H": ["h", "$h"]
 }
 
-slow_word_dur= {
+slow_word_dur= {"w": 1,
+                "h":0.5, # half-measure
+                "th": 1/3,
+                "$h": 1/2,
+}
     # your code here    }
 
 

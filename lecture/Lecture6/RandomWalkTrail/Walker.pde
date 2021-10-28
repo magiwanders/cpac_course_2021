@@ -7,6 +7,8 @@
 class Walker {
   PVector location;
   ArrayList<PVector> history;
+  
+  float WEIGHT = 100;
 
 
   Walker() {
@@ -31,7 +33,7 @@ class Walker {
 
   // Randomly move up, down, left, right, or stay in one place
   void walk() {
-    PVector vel = new PVector(random(-2, 2), random(-2, 2));
+    PVector vel = new PVector(WEIGHT*random(-1, 1), WEIGHT*random(-1, 1));
     location.add(vel);
 
     // Stay on the screen

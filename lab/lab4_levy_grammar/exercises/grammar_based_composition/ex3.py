@@ -6,16 +6,23 @@ from classes import Composer, Grammar_Sequence
 # %%
 triplet_grammar={
     "S":["M", "SM"],
-    "M": ["HH"],    
-    "H": ["h", "QQ"],
-    "Q": ["q", "oo"],
+    "M": ["HH", "ththth"],    
+    "H": ["h", "$h", "QQ", "tqtqtq"],
+    "Q": ["q", "$q", "OO", "tototo"],
+    "O": ["o", "$o"],
     # your code here
 }
 
 
 triplet_word_dur={"h":0.5, # half-measure
-          "q":0.25, # quarter-measure
-          "o":1/8, # octave-measure
+                  "q":0.25, # quarter-measure
+                  "o":  1/8, # octave-measure
+                  "th": 1/3,
+                  "tq": 1/6,
+                  "to": 1/12,
+                  "$h": 1/2,
+                  "$q": 1/4,
+                  "$o": 1/8,
           # your code here for $h, $q, $o, th, tq, to
 }
 

@@ -5,7 +5,7 @@
 Walker w;
 
 void setup() {
-  size(400,400);
+  size(1000,1000);
   frameRate(30);
 
   // Create a walker object
@@ -19,6 +19,3 @@ void draw() {
   w.walk();
   w.display();
 }
-
-
-

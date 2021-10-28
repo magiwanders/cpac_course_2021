@@ -5,7 +5,7 @@ int MONTECARLO_STEPS=1;
 Walker walker;
 void setup() {
   size(1280,720);
-
+  frameRate(400);
   walker=new Walker();  // Create a walker object
   background(0);
   CENTER_SCREEN=new PVector(width/2, height/2);  

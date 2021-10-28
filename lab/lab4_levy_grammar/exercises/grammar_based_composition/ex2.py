@@ -7,12 +7,14 @@ from classes import Composer, Grammar_Sequence
 octave_grammar={
     "S":["M", "SM"],
     "M": ["HH"],    
-    "H": ["h", "qq"],
+    "H": ["h", "QQ" ],
+    "Q": ["q", "oo"],
     # your code here
 }
 
-octave_word_dur={"h":0.5, # half-measure
-          "q":0.25, # quarter-measure
+octave_word_dur={"h":1/2, # half-measure
+                 "q":1/4, # quarter-measure
+                 "o":1/8, }
           # your code here: add "o"}
 
 

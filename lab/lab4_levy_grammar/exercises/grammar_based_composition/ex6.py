@@ -6,12 +6,18 @@ from classes import Composer, Grammar_Sequence
 # %%
 
 clave_grammar={
-    #your code here
+    "S":["M", "SM"],
+    "M": ["R", "F"],    
+    "R": ["o$ff$oo$ooq"],
+    "F": ["o$ff$o$ff$ooq"]
 }
 
 
-clave_word_dur={
-    # your code here
+clave_word_dur={  "q": 1/4, 
+                  "o":  1/8, # octave-measure
+                  "$o": 1/8,
+                  "f": 1/16,
+                  "$f": 1/16,
 }
 
 
