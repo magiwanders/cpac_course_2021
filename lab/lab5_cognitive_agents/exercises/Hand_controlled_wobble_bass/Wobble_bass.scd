@@ -52,7 +52,7 @@ h.set(\lfo,0);
 x = OSCFunc( { | msg, time, addr, port |
     var pyFreq,pyAmp,pyDetune,pyLfo;
 
-	// Handle end of sound
+	// Handle end of sound (stop happens when I press q in python)
 	if (msg[1] =='stop'){
 		h.free
 	}
@@ -60,8 +60,8 @@ x = OSCFunc( { | msg, time, addr, port |
 		// handle class A message (freq and amplitude)
 		if (msg[1]=='a'){
 			// Parse message
-			pyFreq = //...
-			pyAmp  = //...
+			pyFreq = msg[2].asFloat;
+			pyAmp  = msg[3].asFloat;
 			( "freq is " + pyFreq ).postln;
 			( "amp is " + pyAmp ).postln;
 
@@ -72,8 +72,8 @@ x = OSCFunc( { | msg, time, addr, port |
 		// handle class B message (detune and lfo)
 		if (msg[1]=='b'){
 			// parse message
-			pyDetune = //...
-			pyLfo = //...
+			pyDetune = msg[2].asFloat;
+			pyLfo = msg[3].asFloat;
 
 			// print info
 			( "Detuning is " + pyDetune ).postln;
@@ -89,6 +89,7 @@ x = OSCFunc( { | msg, time, addr, port |
 }, '/synth_control' );
 )
 
+x.free
 
 // free synth
 h.free

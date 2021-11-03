@@ -47,7 +47,7 @@ if __name__ == "__main__":
 	# Initialize variables
 	TRAIN = False  # If True, images for the classes are generated
 	SVM = False  # If True classification is performed
-	START_SOUND = False  # If True OSC communication with SC is started
+	START_SOUND = True  # If True OSC communication with SC is started
 	hand = None
 
 	# region of interest (ROI) coordinates
@@ -92,7 +92,7 @@ if __name__ == "__main__":
 		else:
 			
 			# segment the hand region
-			#hand = segment(gray)
+			hand = segment(gray)
 			
 
 			# check whether hand region is segmented
@@ -106,9 +106,9 @@ if __name__ == "__main__":
 				
 				
 				# Center of the hand
-				#c_x, c_y = detect_palm_center(segmented)
-				#radius = 5
-				#cv2.circle(# image where we draw the circle, # tuple representing center, radius, 0, 1)
+				c_x, c_y = detect_palm_center(segmented)
+				radius = 5
+				cv2.circle(thresholded, (c_x,c_y), radius, 0, 1)
 				
 				cv2.imshow("Thesholded", thresholded)
 
@@ -151,26 +151,26 @@ if __name__ == "__main__":
 			class_test = model.predict(image_vector.reshape(1, -1))
 
 			if class_test == 0:
-				# print('Class:  A value: ('+str(c_x)+','+str(c_y)+')')
+				print('Class:  A value: ('+str(c_x)+','+str(c_y)+')')
 				text = 'Class: A'
 			else:
-				# print('Class: B value: ('+str(c_x)+','+str(c_y)+')')
+				print('Class: B value: ('+str(c_x)+','+str(c_y)+')')
 				text = 'Class: B'
 
 			cv2.putText(clone, text, (70, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
 			# Here we send the OSC message corresponding
-			#if START_SOUND:
-				#if class_test == 0:
-
-					#freq = # FILL THE CODE
-					#amp = # FILL THE CODE
-					#client.send_message(# FILL THE CODE)
-				#else:
-					#detune = # FILL THE CODE
-					#lfo = # FILL THE CODE
-					#client.send_message(# FILL THE CODE)
-		
+			if START_SOUND:
+				if class_test == 0:
+					# open hand
+					freq = (c_x/width_roi) * 100 # FILL THE CODE
+					amp = (c_y/width_roi) # FILL THE CODE
+					client.send_message('/synth_control', ['a', freq, amp])
+				else:
+					# closed hand
+					detune = (c_x/width_roi) * 0.1 # FILL THE CODE
+					lfo = (c_y/width_roi) * 10 # FILL THE CODE
+					client.send_message('/synth_control', ['b', detune, lfo])		
 
 		# display the frame with segmented hand
 		cv2.imshow("Video Feed", clone)
