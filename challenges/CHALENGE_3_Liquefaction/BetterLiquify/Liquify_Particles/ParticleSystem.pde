@@ -22,25 +22,18 @@ class ParticleSystem{
     opencv.calculateOpticalFlow(); // Compute Optical Flow
     
     // Image will be divided into a grid
-    int grid_size= 8; // This is the length in pixels of one grid cell
     int half_grid= 4; // This is half of the previous size, why does this exist? Better to use just the halfsize so that you don't fall into parity problems (half size not integer)
   
-    // Variables used for the center of each cell of the grid
-    int c_x=0; // x coordinate of the center
-    int c_y=0; // y coordinate of the center
     PVector aveFlow;  // optical flow for a single cell stored here during cycling
     float treshold = 3.0; // Threshold for deciding whether the optical flow is strong enough for a particle to be created. Also threshold is spelled wrong
 
     // Cycle through all the grid cells
-    for (int w=0; w<img.width; w+=grid_size) {
-      for (int h=0; h<img.height; h+=grid_size) {
+    for (int c_x=half_grid; c_x<img.width; c_x+=2*half_grid) {
+      for (int c_y=half_grid; c_y<img.height; c_y+=2*half_grid) {
         
         // Compute the average Flow over the region from w, h to w+grid_size, h+grid_size
-        aveFlow = opencv.getAverageFlowInRegion(w, h, grid_size, grid_size);
+        aveFlow = opencv.getAverageFlowInRegion(c_x-half_grid, c_y-half_grid, 2*half_grid, 2*half_grid);
   
-        // Update the center position
-        c_x=w+half_grid;
-        c_y=h+half_grid;
         int loc = int(c_x+c_y*img.width); // Linearization of the coordinates of the center of the current cell into the corresponding index of the pixels[] array, which has the pixels in a 1D vector
         PVector position = new PVector(c_x,c_y); // Pvector of the coordinates of the current cell
 
