@@ -2,7 +2,6 @@ import netP5.*;
 import oscP5.*;
 
 OscP5 osc;
-MyPoint p;
 float x, y, z;
 
 void setup(){
@@ -10,10 +9,11 @@ void setup(){
   osc.plug(this, "accelerometer_x_handler", "/accelerometer/x");
   osc.plug(this, "accelerometer_y_handler", "/accelerometer/y");
   osc.plug(this, "accelerometer_z_handler", "/accelerometer/z");
+  osc.plug(this, "pose_handler", "/pose");
 }
 
 void draw() {
-  println("( " + x + " , " + y + " , " + z + " )");
+  //println("( " + x + " , " + y + " , " + z + " )");
 }
 
 void accelerometer_x_handler(float value) {
@@ -28,4 +28,8 @@ void accelerometer_y_handler(float value) {
 
 void accelerometer_z_handler(float value) {
   z = value;
+}
+
+void pose_handler(double body) {
+  println(body);
 }
